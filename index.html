@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Simple Average Calculator</title>
+</head>
+
+<body>
+    <h1>Enter your Input Here!</h1>
+
+
+    <form>
+        <textarea id="text" type="number" rows="5" cols="40"></textarea>
+        <br>
+        <br>
+        <input type="radio" name="average" value="Mean"> Mean
+        <br>
+        <input type="radio" name="average" value="Median"> Median
+        <br>
+        <input type="radio" name="average" value="Mode"> Mode
+        <br>
+        <br>
+        <input type="button" id="btn" value="Submit">
+    </form>
+    <script>
+        const text = document.querySelector('#text');
+        
+
+        const btn = document.querySelector('#btn');
+        btn.onclick = function() {
+            var val = text.value;
+            var res = val.split(" ");
+
+            for(const ab of res) {
+                console.log(ab);
+            }
+
+            const rbs = document.querySelectorAll('input[name="average"]');
+            console.log(rbs);
+            for(const rb of rbs) {
+                if(rb.checked) {
+                    selectedValue = rb.value;
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
