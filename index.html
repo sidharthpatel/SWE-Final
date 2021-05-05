@@ -51,17 +51,31 @@
             console.log(rbs);
             for (const rb of rbs) {
                 if (rb.checked) {
-                    selectedValue = rb.value;
+                    var selectedValue = rb.value;
                     break;
                 }
             }
 
+            if (selectedValue == null) {
+                alert("Please choose a radio button.");
+            }
+
             if (selectedValue === "Mean") {
-                var sum = res.reduce(function (a, b) {
-                    return parseFloat(a) + parseFloat(b)
+                var numbers = res.map((n) => {
+                    return parseFloat(n);
+                });
+                let uniqueChars = [];
+                numbers.forEach((c) => {
+                    if (!uniqueChars.includes(c)) {
+                        uniqueChars.push(c);
+                    }
+                });
+                var sum = uniqueChars.reduce(function (a, b) {
+                    return a + b
                 }, 0);
-                document.getElementById("meanVal").innerHTML = sum / res.length;
-            } else if (selectedValue === "Median") {
+                document.getElementById("meanVal").innerHTML = sum / uniqueChars.length;
+            } 
+            else if (selectedValue === "Median") {
                 var numbers = res.map((n) => {
                     return parseFloat(n);
                 });
@@ -70,7 +84,8 @@
                 const median = numbers.length % 2 == 0 ? (numbers[mid] + numbers[mid - 1]) / 2 : numbers[mid - 1];
                 document.getElementById("meanVal").innerHTML = median;
                 console.log(numbers);
-            } else if (selectedValue === "Mode") {
+            } 
+            else if (selectedValue === "Mode") {
                 var numbers = res.map((n) => {
                     return parseFloat(n);
                 });
@@ -93,7 +108,7 @@
                             modes.push(Number(i));
                         }
                     }
-                    document.getElementById("meanVal").innerHTML = modes;
+                document.getElementById("meanVal").innerHTML = modes;
             }
         }
     </script>
